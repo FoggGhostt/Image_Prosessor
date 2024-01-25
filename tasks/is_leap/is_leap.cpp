@@ -5,6 +5,10 @@ bool IsLeap(int year) {
     const int a = 4;
     const int b = 100;
     const int c = 400;
-    ans = (year >= 0) && (year % a == 0) && (year % b != 0) && (year % c == 0);
+    if ( (year % a == 0) && (year % b != 0) && (year % c == 0) ) {
+        ans = true;
+    } else {
+        ans = false;
+    }
     return ans;
 }
