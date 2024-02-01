@@ -1,8 +1,11 @@
 #include "is_leap.h"
 
+namespace is_leap {
+const int TRUE_SMALL_CYCLE = 4;
+const int TRUE_LARGE_CYCLE = 100;
+const int FALSE_CYCLE = 400;
+}  // namespace is_leap
+
 bool IsLeap(int year) {
-    const int first_cond = 4;
-    const int second_cond = 100;
-    const int third_cond = 400; 
-    return ((year % first_cond == 0) && (year % second_cond != 0)) || (year % third_cond == 0);
+    return ((year % is_leap::TRUE_SMALL_CYCLE == 0) && (year % is_leap::TRUE_LARGE_CYCLE != 0)) || (year % is_leap::FALSE_CYCLE == 0);
 }
