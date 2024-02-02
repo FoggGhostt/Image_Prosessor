@@ -27,7 +27,7 @@ bool IsPalindrome(const std::string& str) {
         j = Moverightpointer(ptr, j);
         if (str[i] != str[j]) {
             return false;
-        } else if (i < str.size() - 1 && j > 0){
+        } else if (i < str.size() - 1 && j > 0) {
             ++i;
             --j;
         }
