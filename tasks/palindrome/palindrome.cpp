@@ -1,7 +1,7 @@
 #include "palindrome.h"
 
 size_t MoveLeftPointer(const std::string* str, size_t i) {
-    while (i < str->size() && (*str)[i] == ' ') {
+    while (i < str->size() - 1 && (*str)[i] == ' ') {
         ++i;
     }
     return i;
@@ -27,7 +27,7 @@ bool IsPalindrome(const std::string& str) {
         j = Moverightpointer(ptr, j);
         if (str[i] != str[j]) {
             return false;
-        } else {
+        } else if (i < str.size() - 1 && j > 0){
             ++i;
             --j;
         }
