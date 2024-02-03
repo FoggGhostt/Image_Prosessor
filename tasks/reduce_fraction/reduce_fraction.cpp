@@ -6,9 +6,9 @@ int64_t ReduceFraction(int64_t numerator, int64_t denominator) {
     int64_t den = denominator;
     while (std::min(num, den) > 0) {  // gcd algorithm
         if (num > den) {
-            num = num - den;
+            num = num % den;
         } else {
-            den = den - num;
+            den = den % num;
         }
     }
     return numerator / std::max(num, den) + denominator / std::max(num, den);
