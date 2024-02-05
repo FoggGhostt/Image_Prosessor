@@ -59,6 +59,6 @@ bool ValidatePassword(const std::string& password) {
     const int low_letter = CheckLowercase(password);
     const int digits_letter = CheckDigits(password);
     const int another_letter = CheckAnother(password);
-    const int count_of_diff_letters_type = up_letter + low_letter + digits_letter + another_letter; 
+    const int count_of_diff_letters_type = up_letter + low_letter + digits_letter + another_letter;
     return (IsCorrectASCI(password) && CheckLength(password) && count_of_diff_letters_type >= 3);
 }
