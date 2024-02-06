@@ -2,11 +2,16 @@
 
 #include <cctype>
 
+namespace password {
+    const char LEFT_ASCI_SYMB_BORDER = 33;
+    const char RIGHT_ASCI_SYMB_BORDER = 126;
+    const size_t MIN_LENGTH = 8;
+    const size_t MAX_LENGTH = 14;
+}
+
 bool IsCorrectASCI(const std::string& password) {
-    const char left_border_asci_symb = 33;
-    const char right_border_asci_symb = 126;
     for (char letter : password) {
-        if (letter < left_border_asci_symb || letter > right_border_asci_symb) {
+        if (letter < password::LEFT_ASCI_SYMB_BORDER || letter > password::RIGHT_ASCI_SYMB_BORDER) {
             return false;
         }
     }
@@ -14,9 +19,7 @@ bool IsCorrectASCI(const std::string& password) {
 }
 
 bool CheckLength(const std::string& password) {
-    const size_t min_length = 8;
-    const size_t max_length = 14;
-    return password.size() >= min_length && password.size() <= max_length;
+    return password.size() >= password::MIN_LENGTH && password.size() <= password::MAX_LENGTH;
 }
 
 bool CheckUppercase(const std::string& password) {
