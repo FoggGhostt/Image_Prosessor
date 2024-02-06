@@ -1,11 +1,12 @@
 #include "password.h"
+
 #include <cctype>
 
 bool IsCorrectASCI(const std::string& password) {
-    const int left_border = 33;
-    const int right_border = 126;
-    for (size_t i = 0; i < password.size(); ++i) {
-        if (password[i] < left_border || password[i] > right_border) {
+    const char left_border_asci_symb = 33;
+    const char right_border_asci_symb = 126;
+    for (char letter : password) {
+        if (letter < left_border_asci_symb || letter > right_border_asci_symb) {
             return false;
         }
     }
@@ -13,52 +14,55 @@ bool IsCorrectASCI(const std::string& password) {
 }
 
 bool CheckLength(const std::string& password) {
-    const int min_length = 8;
-    const int max_length = 14;
+    const size_t min_length = 8;
+    const size_t max_length = 14;
     return password.size() >= min_length && password.size() <= max_length;
 }
 
-int CheckUppercase(const std::string& password) {
-    for (size_t i = 0; i < password.size(); ++i) {
-        if (std::isupper(password[i])) {
-            return 1;
+bool CheckUppercase(const std::string& password) {
+    for (char letter : password) {
+        if (std::isupper(letter)) {
+            return true;
         }
     }
-    return 0;
+    return false;
 }
 
-int CheckLowercase(const std::string& password) {
-    for (size_t i = 0; i < password.size(); ++i) {
-        if (std::islower(password[i])) {
-            return 1;
+bool CheckLowercase(const std::string& password) {
+    for (char letter : password) {
+        if (std::islower(letter)) {
+            return true;
         }
     }
-    return 0;
+    return false;
 }
 
-int CheckDigits(const std::string& password) {
-    for (size_t i = 0; i < password.size(); ++i) {
-        if (std::isdigit(password[i])) {
-            return 1;
+bool CheckDigits(const std::string& password) {
+    for (char letter : password) {
+        if (std::isdigit(letter)) {
+            return true;
         }
     }
-    return 0;
+    return false;
 }
 
-int CheckAnother(const std::string& password) {
-    for (size_t i = 0; i < password.size(); ++i) {
-        if (!std::isupper(password[i]) && !std::islower(password[i]) && !std::isdigit(password[i])) {
-            return 1;
+bool CheckAnother(const std::string& password) {
+    for (char letter : password) {
+        if (!std::isupper(letter) && !std::islower(letter) && !std::isdigit(letter)) {
+            return true;
         }
     }
-    return 0;
+    return false;
 }
 
 bool ValidatePassword(const std::string& password) {
-    const int up_letter = CheckUppercase(password);
-    const int low_letter = CheckLowercase(password);
-    const int digits_letter = CheckDigits(password);
-    const int another_letter = CheckAnother(password);
-    const int count_of_diff_letters_type = up_letter + low_letter + digits_letter + another_letter;
-    return (IsCorrectASCI(password) && CheckLength(password) && count_of_diff_letters_type >= 3);
+    if (!IsCorrectASCI(password) || !CheckLength(password)) {
+        return false;
+    }
+    const bool up_letter_flag = CheckUppercase(password);
+    const bool low_letter_flag = CheckLowercase(password);
+    const bool digits_letter_flag = CheckDigits(password);
+    const bool another_letter_flag = CheckAnother(password);
+    const int count_of_diff_letters_type = up_letter_flag + low_letter_flag + digits_letter_flag + another_letter_flag;
+    return (count_of_diff_letters_type >= 3);
 }
