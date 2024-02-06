@@ -3,11 +3,11 @@
 #include <cctype>
 
 namespace password {
-    const char LEFT_ASCI_SYMB_BORDER = 33;
-    const char RIGHT_ASCI_SYMB_BORDER = 126;
-    const size_t MIN_LENGTH = 8;
-    const size_t MAX_LENGTH = 14;
-}
+const char LEFT_ASCI_SYMB_BORDER = 33;
+const char RIGHT_ASCI_SYMB_BORDER = 126;
+const size_t MIN_LENGTH = 8;
+const size_t MAX_LENGTH = 14;
+}  // namespace password
 
 bool IsCorrectASCI(const std::string& password) {
     for (char letter : password) {
