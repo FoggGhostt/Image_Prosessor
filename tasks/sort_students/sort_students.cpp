@@ -2,6 +2,8 @@
 
 #include <array>
 
+#include <algorithm>
+
 int CompareDates(const Date& date1, const Date& date2) {
     std::array<int, 3> year_month_date_1 = {date1.year, date1.month, date1.day};
     std::array<int, 3> year_month_date_2 = {date2.year, date2.month, date2.day};
