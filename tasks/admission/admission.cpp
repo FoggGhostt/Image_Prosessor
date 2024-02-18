@@ -36,7 +36,8 @@ bool StudentComparatop2(const Student* applicant_1, const Student* applicant_2) 
     return comparable_applicant1 < comparable_applicant2;
 }
 
-std::string ChoseUviversity(std::unordered_map<std::string, size_t>& universities, const Applicant& applicant, AdmissionTable& answer) {
+std::string ChoseUviversity(std::unordered_map<std::string, size_t>& universities, const Applicant& applicant,
+                            AdmissionTable& answer) {
     for (const std::string& university : applicant.wish_list) {
         if (answer[university].size() - universities[university] > 0) {
             return university;
@@ -65,12 +66,6 @@ AdmissionTable FillUniversities(const std::vector<University>& universities, con
     }
     for (auto& pair : answer) {
         std::sort(pair.second.begin(), pair.second.end(), StudentComparatop2);
-    }
-    for (auto& pair : answer) {
-        std::cout << pair.first << std::endl;
-        for (auto x : pair.second) {
-            std::cout << (*x).name << std::endl;
-        }
     }
     return answer;
 }
