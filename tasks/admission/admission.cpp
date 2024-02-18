@@ -50,8 +50,10 @@ AdmissionTable FillUniversities(const std::vector<University>& universities, con
         
         if (chosen_university != "admission failed") {
             answer[chosen_university].push_back(&applicant.student);
-            std::cout << chosen_university << std::endl;
         }
+    }
+    for (const auto& pair : answer) {
+        std::cout << "Key: " << pair.first << ", Value: " << pair.second << std::endl;
     }
     return answer;
 }
