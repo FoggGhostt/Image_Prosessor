@@ -10,11 +10,11 @@
 
 std::vector<std::string> StudentsOrder(const std::vector<StudentAction>& student_actions,
                                        const std::vector<size_t>& queries) {
-    std::deque<std::string> all_students; 
+    std::deque<std::string> all_students;
     for (const StudentAction& student : student_actions) {
         if (student.side == Side::Bottom) {
             all_students.push_back(student.name);
-        } else if (student.side == Side::Top){
+        } else if (student.side == Side::Top) {
             all_students.push_front(student.name);
         }
     }
