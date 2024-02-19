@@ -46,7 +46,7 @@ AdmissionTable FillUniversities(const std::vector<University>& universities, con
         }
     }
     for (auto& [_, university_students_list] : admission_table_answer) {
-        std::sort(university_students_list.rbegin(), university_students_list.rend(), StudentComparatorNamePriority);
+        std::sort(university_students_list.begin(), university_students_list.end(), StudentComparatorNamePriority);
     }
     return admission_table_answer;
 }
