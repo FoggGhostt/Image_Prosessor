@@ -8,11 +8,19 @@ struct Date {
     int day = 0;
     int month = 0;
     int year = 0;
+
+    bool operator<(const Date& other) const {
+        return std::tie(year, month, day) < std::tie(other.year, other.month, other.day);
+    }
 };
 
 struct Student {
     std::string name;
     Date birth_date;
+
+    bool operator<(const Student& other) const {
+        return std::tie(name, birth_date) < std::tie(other.name, other.birth_date);
+    }
 };
 
 struct University {
@@ -24,6 +32,12 @@ struct Applicant {
     Student student;
     int points;
     std::vector<std::string> wish_list;
+    
+    bool operator()(const Applicant& other) const {
+        int neg_point1 = -points;
+        int neg_point2 = - other.points;
+        return std::tie(neg_point1, student.birth_date, student.name) < std::tie(neg_point2, other.student.birth_date, other.student.name);
+    }
 };
 
 using AdmissionTable = std::unordered_map<std::string, std::vector<const Student*>>;
