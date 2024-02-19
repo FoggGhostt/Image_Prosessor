@@ -62,9 +62,9 @@ ScoreTable GetScoredStudents(const Events& events, time_t score_time) {
         sortedbly_events.push_back(event);
     }
     std::sort(sortedbly_events.begin(), sortedbly_events.end(), EventsComparatop);
-    Event pseudo = {};
-    pseudo.student_name = "new event for update last task of last student ";
-    sortedbly_events.push_back(pseudo);
+    // Event pseudo = {};
+    // pseudo.student_name = "new event for update last task of last student ";
+    // sortedbly_events.push_back(pseudo);
     CurentTask cur_task = {};
     for (Event& event : sortedbly_events) {
         if (event.student_name != cur_task.cur_student || event.task_name != cur_task.cur_task_name) {
@@ -74,5 +74,6 @@ ScoreTable GetScoredStudents(const Events& events, time_t score_time) {
         }
         SetCheckMergeStatus(cur_task, event);
     }
+    AddTask(answer_table, cur_task);
     return answer_table;
 }
