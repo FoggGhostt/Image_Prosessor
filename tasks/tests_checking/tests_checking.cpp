@@ -1,6 +1,5 @@
 #include "tests_checking.h"
 
-#include <iostream>
 #include <deque>
 #include <string_view>
 
@@ -16,8 +15,7 @@ std::vector<std::string> StudentsOrder(const std::vector<StudentAction>& student
     }
     std::vector<std::string> queue_of_all_students = {};
     for (size_t num : queries) {
-        std::string new_string(all_students[num - 1]);
-        queue_of_all_students.emplace_back(new_string);
+        queue_of_all_students.emplace_back(all_students[num - 1]);
     }
     return queue_of_all_students;
 }
