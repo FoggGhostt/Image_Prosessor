@@ -74,6 +74,8 @@ ScoreTable GetScoredStudents(const Events& events, time_t score_time) {
         }
         SetCheckMergeStatus(cur_task, event);
     }
+    cur_task.cur_student = sortedbly_events[size(sortedbly_events) - 1].student_name;
+    cur_task.cur_task_name = sortedbly_events[size(sortedbly_events) - 1].task_name;
     AddTask(answer_table, cur_task);
     return answer_table;
 }
