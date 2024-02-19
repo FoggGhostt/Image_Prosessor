@@ -63,11 +63,12 @@ ScoreTable GetScoredStudents(const Events& events, time_t score_time) {
     }
     std::sort(sortedbly_events.begin(), sortedbly_events.end(), EventsComparatop);
     Event pseudo = {};
-    pseudo.student_name = "new event for update last task of last student ";
+    pseudo.student_name = "new event for update last task of last student  ";
     sortedbly_events.push_back(pseudo);
     CurentTask cur_task = {};
     for (Event& event : sortedbly_events) {
-        if ((event.student_name != cur_task.cur_student || event.task_name != cur_task.cur_task_name) && event.time <= score_time) {
+        if ((event.student_name != cur_task.cur_student || event.task_name != cur_task.cur_task_name) &&
+            event.time <= score_time) {
             AddTask(answer_table, cur_task);
             cur_task.cur_student = event.student_name;
             cur_task.cur_task_name = event.task_name;
