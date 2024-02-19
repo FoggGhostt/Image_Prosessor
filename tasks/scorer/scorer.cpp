@@ -30,7 +30,7 @@ void AddTask(ScoreTable& table, const CurentTask& cur_task) {
         if (iter != table.end()) {
             iter->second.insert(cur_task.cur_task_name);
         } else {
-            std::set<TaskName> task_set= {};
+            std::set<TaskName> task_set = {};
             task_set.insert(cur_task.cur_task_name);
             std::pair<std::string, std::set<TaskName>> pair(cur_task.cur_student, task_set);
             table.insert(pair);
@@ -63,7 +63,7 @@ ScoreTable GetScoredStudents(const Events& events, time_t score_time) {
     }
     std::sort(sortedbly_events.begin(), sortedbly_events.end(), EventsComparatop);
     Event pseudo = {};
-    pseudo.student_name = "new event for update last task of last student";
+    pseudo.student_name = "new event for update last task of last student ";
     sortedbly_events.push_back(pseudo);
     CurentTask cur_task = {};
     for (Event& event : sortedbly_events) {
