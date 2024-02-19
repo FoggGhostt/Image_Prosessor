@@ -18,7 +18,7 @@ bool StudentComparatorNamePriority(const Student* stud1, const Student* stud2) {
 }
 
 std::string ChooseUviversity(std::unordered_map<std::string, size_t>& universities, const Applicant& applicant,
-                            AdmissionTable& answer) {
+                             AdmissionTable& answer) {
     for (const std::string& university : applicant.wish_list) {
         if (answer[university].size() - universities[university] > 0) {
             return university;
@@ -46,7 +46,7 @@ AdmissionTable FillUniversities(const std::vector<University>& universities, con
         }
     }
     for (auto& [_, university_students_list] : admission_table_answer) {
-    std::sort(university_students_list.rbegin(), university_students_list.rend(), StudentComparatorNamePriority);
+        std::sort(university_students_list.rbegin(), university_students_list.rend(), StudentComparatorNamePriority);
     }
     return admission_table_answer;
 }
