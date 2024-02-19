@@ -6,7 +6,7 @@
 #include <iostream>
 
 namespace admitionfail {
-    const std::string FAIL = "admission failed";
+const std::string FAIL = "admission failed";
 }  // namespace admitionfail
 
 bool ApplicantComparatopPointPriority(const Applicant& applicant1, const Applicant& applicant2) {
@@ -17,7 +17,7 @@ bool ApplicantComparatopPointPriority(const Applicant& applicant1, const Applica
 }
 
 bool StudentComparatorNamePriority(const Student* stud1, const Student* stud2) {
-    return *stud1 < *stud2;
+    return (*stud1) < (*stud2);
 }
 
 std::string ChoseUviversity(std::unordered_map<std::string, size_t>& universities, const Applicant& applicant,
