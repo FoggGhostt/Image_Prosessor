@@ -43,14 +43,13 @@ void SetTaskCondition(const Event& event, StudentTable& stud_table) {
         case EventType::CheckSuccess:
             stud_table[event.student_name][event.task_name].is_checked = true;
             break;
-        break;
         case EventType::MergeRequestOpen:
             stud_table[event.student_name][event.task_name].is_merge_request_open = true;
             break;
         case EventType::MergeRequestClosed:
             stud_table[event.student_name][event.task_name].is_merge_request_open = false;
             break;
-        }
+    }
 }
 
 ScoreTable GetScoredStudents(const Events& events, time_t score_time) {
@@ -58,7 +57,7 @@ ScoreTable GetScoredStudents(const Events& events, time_t score_time) {
     StudentTable student_table = {};
     std::vector<Event> sortedbly_student = {};
     for (const Event& event : events) {
-         sortedbly_student.emplace_back(event);
+        sortedbly_student.emplace_back(event);
     }
     std::sort(sortedbly_student.begin(), sortedbly_student.end(), EventsTimeComparatop);
     for (const Event& event : sortedbly_student) {
