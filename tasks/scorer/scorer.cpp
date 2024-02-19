@@ -38,20 +38,22 @@ void AddTask(ScoreTable& table, const CurentTask& cur_task) {
     }
 }
 
-void SetCheckMergeStatus(CurentTask& cur_task, Event& cur_event) {
-    switch (cur_event.event_type) {
-        case EventType::CheckFailed:
-            cur_task.is_checked = false;
-            break;
-        case EventType::CheckSuccess:
-            cur_task.is_checked = true;
-            break;
-        case EventType::MergeRequestOpen:
-            cur_task.is_merge_request_open = true;
-            break;
-        case EventType::MergeRequestClosed:
-            cur_task.is_merge_request_open = false;
-            break;
+void SetCheckMergeStatus(CurentTask& cur_task, Event& cur_event, time_t time) {
+    if (cur_event.time <= time) {
+        switch (cur_event.event_type) {
+            case EventType::CheckFailed:
+                cur_task.is_checked = false;
+                break;
+            case EventType::CheckSuccess:
+                cur_task.is_checked = true;
+                break;
+            case EventType::MergeRequestOpen:
+                cur_task.is_merge_request_open = true;
+                break;
+            case EventType::MergeRequestClosed:
+                cur_task.is_merge_request_open = false;
+                break;
+        }
     }
 }
 
@@ -63,7 +65,7 @@ ScoreTable GetScoredStudents(const Events& events, time_t score_time) {
     }
     std::sort(sortedbly_events.begin(), sortedbly_events.end(), EventsComparatop);
     Event pseudo = {};
-    pseudo.student_name = "new event for update last task of last student  ";
+    pseudo.student_name = "new event for update last task of last student ";
     sortedbly_events.push_back(pseudo);
     CurentTask cur_task = {};
     for (Event& event : sortedbly_events) {
@@ -73,7 +75,7 @@ ScoreTable GetScoredStudents(const Events& events, time_t score_time) {
             cur_task.cur_student = event.student_name;
             cur_task.cur_task_name = event.task_name;
         }
-        SetCheckMergeStatus(cur_task, event);
+        SetCheckMergeStatus(cur_task, event, score_time);
     }
     return answer_table;
 }
