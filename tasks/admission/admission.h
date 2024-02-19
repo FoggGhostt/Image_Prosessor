@@ -32,12 +32,6 @@ struct Applicant {
     Student student;
     int points;
     std::vector<std::string> wish_list;
-    
-    bool operator()(const Applicant& other) const {
-        int neg_point1 = -points;
-        int neg_point2 = - other.points;
-        return std::tie(neg_point1, student.birth_date, student.name) < std::tie(neg_point2, other.student.birth_date, other.student.name);
-    }
 };
 
 using AdmissionTable = std::unordered_map<std::string, std::vector<const Student*>>;
