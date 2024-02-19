@@ -17,7 +17,7 @@ std::vector<std::string> StudentsOrder(const std::vector<StudentAction>& student
     std::vector<std::string> queue_of_all_students = {};
     for (size_t num : queries) {
         std::string new_string(all_students[num - 1]);
-        queue_of_all_students.push_back(new_string);
+        queue_of_all_students.emplace_back(new_string);
     }
     return queue_of_all_students;
 }
