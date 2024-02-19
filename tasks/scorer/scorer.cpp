@@ -69,8 +69,7 @@ ScoreTable GetScoredStudents(const Events& events, time_t score_time) {
     sortedbly_events.push_back(pseudo);
     CurentTask cur_task = {};
     for (Event& event : sortedbly_events) {
-        if ((event.student_name != cur_task.cur_student || event.task_name != cur_task.cur_task_name) &&
-            event.time <= score_time) {
+        if (event.student_name != cur_task.cur_student || event.task_name != cur_task.cur_task_name) {
             AddTask(answer_table, cur_task);
             cur_task.cur_student = event.student_name;
             cur_task.cur_task_name = event.task_name;
