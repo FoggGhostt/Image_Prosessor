@@ -1,18 +1,11 @@
 #include "scorer.h"
 
 #include <algorithm>
-#include <iostream>
-#include <set>
-#include <string>
-#include <vector>
 
 struct TaskCondition {
-    std::string cur_student;
-    std::string cur_task_name = "nothing";
     bool is_merge_request_open;
     bool is_checked;
-    TaskCondition()
-        : cur_student("nothing"), cur_task_name("nothing"), is_merge_request_open(false), is_checked(false) {
+    TaskCondition() : is_merge_request_open(false), is_checked(false) {
     }
 };
 
