@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <deque>
+#include <iostream>
 
 int64_t CountPassports(const std::vector<int>& provinces) {
     if (provinces.size() == 1) {
@@ -24,12 +25,20 @@ int64_t CountPassports(const std::vector<int>& provinces) {
         if (i == sortable_provinces.size() - 1 && j == combined_province.size() - 1) {
             answer += sortable_provinces[i] + combined_province[j];
             return answer;
+        } else if (i == sortable_provinces.size()) {
+            answer += combined_province[j] + combined_province[j + 1];
+            combined_province.push_back(combined_province[j] + combined_province[j + 1]);
+            j += 2;
+        } else if (j == combined_province.size()) {
+            answer += sortable_provinces[i] + sortable_provinces[i + 1];
+            combined_province.push_back(sortable_provinces[i] + sortable_provinces[i + 1]);
+            i += 2;
         } else if (i == sortable_provinces.size() - 1 && j != combined_province.size() - 1) {
             if (sortable_provinces[i] + combined_province[j] < combined_province[j] + combined_province[j + 1]) {
-                i += 1;
-                j += 1;
                 answer += sortable_provinces[i] + combined_province[j];
                 combined_province.push_back(sortable_provinces[i] + combined_province[j]);
+                i += 1;
+                j += 1;
             } else {
                 j += 2;
                 answer += combined_province[j] + combined_province[j + 1];
@@ -37,32 +46,32 @@ int64_t CountPassports(const std::vector<int>& provinces) {
             }
         } else if (i != sortable_provinces.size() - 1 && j == combined_province.size() - 1) {
             if (sortable_provinces[i] + combined_province[j] < sortable_provinces[i] + sortable_provinces[i + 1]) {
-                i += 1;
-                j += 1;
                 answer += sortable_provinces[i] + combined_province[j];
                 combined_province.push_back(sortable_provinces[i] + combined_province[j]);
+                i += 1;
+                j += 1;
             } else {
-                i += 2;
                 answer += sortable_provinces[i] + sortable_provinces[i + 1];
                 combined_province.push_back(sortable_provinces[i] + sortable_provinces[i + 1]);
+                i += 2;
             }
         } else {
             if (sortable_provinces[i] + combined_province[j] < combined_province[j] + combined_province[j + 1] &&
                 sortable_provinces[i] + combined_province[j] < sortable_provinces[i] + sortable_provinces[i + 1]) {
-                i += 1;
-                j += 1;
                 answer += sortable_provinces[i] + combined_province[j];
                 combined_province.push_back(sortable_provinces[i] + combined_province[j]);
+                i += 1;
+                j += 1;
             } else if (combined_province[j] + combined_province[j + 1] < sortable_provinces[i] + combined_province[j] &&
                        combined_province[j] + combined_province[j + 1] <
                            sortable_provinces[i] + sortable_provinces[i + 1]) {
-                j += 2;
                 answer += combined_province[j] + combined_province[j + 1];
                 combined_province.push_back(combined_province[j] + combined_province[j + 1]);
+                j += 2;
             } else {
-                i += 2;
                 answer += sortable_provinces[i] + sortable_provinces[i + 1];
                 combined_province.push_back(sortable_provinces[i] + sortable_provinces[i + 1]);
+                i += 2;
             }
         }
     }
