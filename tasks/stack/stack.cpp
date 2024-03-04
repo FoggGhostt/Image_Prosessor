@@ -21,8 +21,8 @@ void Stack::Push(int32_t value) {
 }
 
 void Stack::Clear() {
-     while (!Empty()) {
-            Pop();
+    while (!Empty()) {
+        Pop();
     }
 }
 
@@ -51,4 +51,3 @@ int32_t Stack::Size() const {
 bool Stack::Empty() const {
     return head_ == nullptr;
 }
-
