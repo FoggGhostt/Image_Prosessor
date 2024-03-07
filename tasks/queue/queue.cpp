@@ -1,5 +1,8 @@
 #include "queue.h"
 
+Node::Node() : value(0), next(nullptr) { 
+}
+
 Node::Node(int32_t value, Node* next) : value(value), next(next) {
 }
 
@@ -22,7 +25,7 @@ void Queue::Push(int32_t value) {
         tail_->next = new_tail;
         tail_ = new_tail;
     }
-    size_ += 1;
+    size_++;
 }
 
 void Queue::Pop() {
@@ -32,13 +35,10 @@ void Queue::Pop() {
     Node* new_front = front_->next;
     delete front_;
     front_ = new_front;
-    size_ -= 1;
+    size_--;
 }
 
 int32_t Queue::Front() const {
-    if (Empty()) {
-        return {};
-    }
     return front_->value;
 }
 
