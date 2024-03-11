@@ -3,9 +3,7 @@
 Node::Node(int32_t value, Node* previous) : value(value), previous(previous) {
 }
 
-Stack::Stack() {
-    size_ = 0;
-    head_ = nullptr;
+Stack::Stack() : head_(nullptr), size_(0) {
 }
 
 Stack::~Stack() {
@@ -38,7 +36,7 @@ void Stack::Pop() {
 
 int32_t Stack::Top() const {
     if (Empty()) {
-        return {};
+        return 0;
     }
     int32_t value = head_->value;
     return value;
