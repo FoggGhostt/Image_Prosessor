@@ -15,7 +15,7 @@ Stack::~Stack() {
 void Stack::Push(int32_t value) {
     Node* new_top = new Node{value, head_};
     head_ = new_top;
-    size_++;
+    ++size_;
 }
 
 void Stack::Clear() {
@@ -31,7 +31,7 @@ void Stack::Pop() {
     Node* old_top = head_->previous;
     delete head_;
     head_ = old_top;
-    size_--;
+    --size_;
 }
 
 int32_t Stack::Top() const {
