@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstddef>
 #include <cstdint>
 
 struct Node {
@@ -20,13 +21,13 @@ public:
 
     void Push(int32_t value);
 
+    void Clear();
+
     void Pop();
 
     int32_t Top() const;
 
     int32_t Size() const;
-
-    void Clear();
 
     bool Empty() const;
 };
