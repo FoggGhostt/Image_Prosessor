@@ -6,6 +6,7 @@ struct Node {
     int32_t value;
     Node* next;
     Node(int32_t value, Node* next);
+    Node();
 };
 
 class Queue {
