@@ -22,7 +22,7 @@ void Queue::Push(int32_t value) {
         tail_->next = new_tail;
         tail_ = new_tail;
     }
-    size_++;
+    ++size_;
 }
 
 void Queue::Pop() {
@@ -32,7 +32,7 @@ void Queue::Pop() {
     Node* new_front = front_->next;
     delete front_;
     front_ = new_front;
-    size_--;
+    --size_;
 }
 
 int32_t Queue::Front() const {
