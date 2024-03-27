@@ -11,21 +11,21 @@ class Reader {
 public:
     explicit Reader(std::string_view filename);
 
-    template<std::integral T>
+    template <std::integral T>
     T Read();
 
     // std::cin >> a;
     // int i
     // be_reader >> i;
     // const auto i2 = be_reader.Read()
-    template<std::integral T>
+    template <std::integral T>
     Reader& operator>>(T& i);
 
 private:
     std::ifstream stream_;
 };
 
-template<std::integral T>
+template <std::integral T>
 T Reader::Read() {
     char buffer[sizeof(T)];
     stream_.read(buffer, sizeof(buffer));
@@ -37,7 +37,7 @@ T Reader::Read() {
     return *reinterpret_cast<T*>(buffer);
 }
 
-template<std::integral T>
+template <std::integral T>
 Reader& Reader::operator>>(T& i) {
     i = Read<T>();
     return *this;

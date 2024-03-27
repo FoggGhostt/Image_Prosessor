@@ -69,8 +69,8 @@ FileHeader LoadFileHeader(io::Reader& reader) {
 }
 
 void SaveFileHeader(io::Writer& writer, const FileHeader& file_header) {
-    writer << file_header.header_field[0] << file_header.header_field[1] << file_header.file_size <<
-        file_header.reserved[0] << file_header.reserved[1] << file_header.offset;
+    writer << file_header.header_field[0] << file_header.header_field[1] << file_header.file_size
+           << file_header.reserved[0] << file_header.reserved[1] << file_header.offset;
 }
 
 BitmapInfoHeader LoadInfoHeader(io::Reader& reader) {
@@ -87,10 +87,10 @@ BitmapInfoHeader LoadInfoHeader(io::Reader& reader) {
 }
 
 void SaveInfoHeader(io::Writer& writer, const BitmapInfoHeader& info_header) {
-    writer << info_header.header_size << info_header.size.width << info_header.size.height <<
-        info_header.color_planes << info_header.bits_per_pixel << info_header.compression_method <<
-        info_header.bitmap_data_size << info_header.resolution.horizontal << info_header.resolution.vertical <<
-        info_header.colors.total << info_header.colors.important;
+    writer << info_header.header_size << info_header.size.width << info_header.size.height << info_header.color_planes
+           << info_header.bits_per_pixel << info_header.compression_method << info_header.bitmap_data_size
+           << info_header.resolution.horizontal << info_header.resolution.vertical << info_header.colors.total
+           << info_header.colors.important;
 }
 
 void LoadRowImage(io::Reader& reader, image::Image& image, size_t row) {
@@ -134,7 +134,7 @@ void SaveRowImage(io::Writer& writer, const image::Image& image, size_t row) {
     size_t bytes_written = (Color24bits::KBitsPerPixel / sizeof(uint8_t)) * image.GetWidth();
     size_t row_size = GetRowSize(image.GetWidth());
     for (; bytes_written < row_size; ++bytes_written) {
-        uint8_t dummy {};
+        uint8_t dummy{};
         writer << dummy;
     }
 }

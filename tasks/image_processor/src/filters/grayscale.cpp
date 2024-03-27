@@ -33,9 +33,15 @@ public:
         image::Image new_image = image;
         for (size_t row = 0; row < image.GetHeight(); ++row) {
             for (size_t col = 0; col < image.GetWidth(); ++col) {
-                new_image(row, col).r = static_cast<float>(image(row, col).r * red_figure + image(row, col).g * green_figure + image(row, col).b * blue_fugure);
-                new_image(row, col).g = static_cast<float>(image(row, col).r * red_figure + image(row, col).g * green_figure + image(row, col).b * blue_fugure);
-                new_image(row, col).b = static_cast<float>(image(row, col).r * red_figure + image(row, col).g * green_figure + image(row, col).b * blue_fugure);
+                new_image(row, col).r =
+                    static_cast<float>(image(row, col).r * red_figure + image(row, col).g * green_figure +
+                                       image(row, col).b * blue_fugure);
+                new_image(row, col).g =
+                    static_cast<float>(image(row, col).r * red_figure + image(row, col).g * green_figure +
+                                       image(row, col).b * blue_fugure);
+                new_image(row, col).b =
+                    static_cast<float>(image(row, col).r * red_figure + image(row, col).g * green_figure +
+                                       image(row, col).b * blue_fugure);
             }
         }
         return new_image;

@@ -39,9 +39,7 @@ public:
     };
 
 public:
-    Crop(size_t width, size_t height)
-        : width_(width)
-        , height_(height) {
+    Crop(size_t width, size_t height) : width_(width), height_(height) {
     }
 
     image::Image Apply(const image::Image& image) override {

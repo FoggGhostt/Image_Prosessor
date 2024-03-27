@@ -15,7 +15,6 @@
 #include <filters/filter.h>
 #include <filters/registry.h>
 
-
 namespace image_processor::filters {
 
 namespace {
@@ -30,8 +29,8 @@ const float FILTER_MATRIX_POS_31 = 0.0f;
 const float FILTER_MATRIX_POS_32 = -1.0f;
 const float FILTER_MATRIX_POS_33 = 0.0f;
 const std::vector<float> FILTER_VECTOR{FILTER_MATRIX_POS_11, FILTER_MATRIX_POS_12, FILTER_MATRIX_POS_13,
-                                FILTER_MATRIX_POS_21, FILTER_MATRIX_POS_22, FILTER_MATRIX_POS_23,
-                                FILTER_MATRIX_POS_31, FILTER_MATRIX_POS_32, FILTER_MATRIX_POS_33};
+                                       FILTER_MATRIX_POS_21, FILTER_MATRIX_POS_22, FILTER_MATRIX_POS_23,
+                                       FILTER_MATRIX_POS_31, FILTER_MATRIX_POS_32, FILTER_MATRIX_POS_33};
 const utils::Matrix<float> FILTER_MATRIX{3, 3, FILTER_VECTOR};
 
 }  // namespace
@@ -60,11 +59,12 @@ public:
                 answer_image(row, col) = answer_image(row, col) - answer_image(row, col);
                 for (int64_t i = 0; i < 3; ++i) {
                     for (int64_t j = 0; j < 3; ++j) {
-                        const size_t modified_row_cord = static_cast<size_t>(std::clamp(static_cast<int64_t>(row) + 1 - i, lower_row, upper_row));
-                        const size_t modified_col_cord = static_cast<size_t>(std::clamp(static_cast<int64_t>(col) + 1 - j, lower_col, upper_col));
+                        const size_t modified_row_cord =
+                            static_cast<size_t>(std::clamp(static_cast<int64_t>(row) + 1 - i, lower_row, upper_row));
+                        const size_t modified_col_cord =
+                            static_cast<size_t>(std::clamp(static_cast<int64_t>(col) + 1 - j, lower_col, upper_col));
                         answer_image(row, col) = answer_image(row, col) +
-                                                 image(modified_row_cord, modified_col_cord) *
-                                                     (FILTER_MATRIX(i, j));
+                                                 image(modified_row_cord, modified_col_cord) * (FILTER_MATRIX(i, j));
                     }
                 }
                 answer_image(row, col).r = std::fmin(1.0f, std::fmax(0.0f, answer_image(row, col).r));

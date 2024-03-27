@@ -24,9 +24,7 @@ public:
     }
 
     Factory Get(std::string_view name) {
-        return [this, name](const auto& params) {
-            return map_[name.data()]->Construct(params);
-        };
+        return [this, name](const auto& params) { return map_[name.data()]->Construct(params); };
     }
 
 private:

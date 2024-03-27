@@ -24,5 +24,4 @@ public:
     virtual image::Image Apply(const image::Image& image) = 0;
 };
 
-
 }  // namespace image_processor::filters

@@ -53,8 +53,8 @@ public:
     //     new_matrix(0, 0) = new_matrix(1, 1);
     //     new_matrix(0, new_matrix.GetWidth() - 1) = new_matrix(1, new_matrix.GetWidth() - 2);
     //     new_matrix(new_matrix.GetHeight() - 1, 0) = new_matrix(new_matrix.GetHeight() - 2, 1);
-    //     new_matrix(new_matrix.GetHeight() - 1, new_matrix.GetWidth() - 1) = new_matrix(new_matrix.GetHeight() - 2, new_matrix.GetWidth() - 2);
-    //     return new_matrix;
+    //     new_matrix(new_matrix.GetHeight() - 1, new_matrix.GetWidth() - 1) = new_matrix(new_matrix.GetHeight() - 2,
+    //     new_matrix.GetWidth() - 2); return new_matrix;
     // }
 
     Matrix<T> operator*(Matrix<T> matrix1) {
