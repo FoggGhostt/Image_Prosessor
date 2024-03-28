@@ -2,13 +2,16 @@
 
 #include <stdexcept>
 #include <string_view>
+#include <set>
 
 namespace image_processor::args {
 
 namespace {
 
+const std::set<std::string_view> FILTER_SET = {"-gs", "-crop", "-neg", "-sharp", "-edge"};
+
 bool IsValidFilterName(std::string_view name) {
-    return name.size() > 2 && name.starts_with('-');
+    return name.size() > 2 && name.starts_with('-') && FILTER_SET.find(name) != FILTER_SET.end();
 }
 
 }  // namespace
@@ -27,11 +30,10 @@ Args::Args(int argc, const char* argv[]) : input_file_(), output_file_(), filter
     }
     input_file_ = argv[1];
     output_file_ = argv[2];
-
     for (size_t i = 3; i < static_cast<size_t>(argc);) {
         std::string_view filter_name = argv[i];
         if (!IsValidFilterName(filter_name)) {
-            throw std::runtime_error("not valid filter name [" + std::string(filter_name) + "]");
+            throw std::runtime_error("Not valid filter name [" + std::string(filter_name) + "]");
         }
         ++i;
         std::vector<std::string> params;

@@ -16,9 +16,12 @@ namespace {
 
 size_t Cast(std::string_view s) {
     std::stringstream sstream(s.data());
-    size_t result = 0;
+    int result = 0;
     sstream >> result;
-    return result;
+    if (result < 0) {
+        throw std::invalid_argument("USAGE: -crop width > 0 height > 0");
+    }
+    return static_cast<size_t>(result);
 }
 
 }  // namespace
@@ -29,9 +32,8 @@ public:
     public:
         std::unique_ptr<Filter> Construct(const std::vector<std::string>& parameters) override {
             if (parameters.size() != 2) {
-                throw std::invalid_argument("");
+                throw std::invalid_argument("USAGE: -crop width height");
             }
-
             const size_t width = Cast(parameters[0]);
             const size_t height = Cast(parameters[1]);
             return std::make_unique<Crop>(width, height);
@@ -45,9 +47,6 @@ public:
     image::Image Apply(const image::Image& image) override {
         height_ = std::min(image.GetHeight(), height_);
         width_ = std::min(image.GetWidth(), width_);
-        if (width_ < 0 || height_ < 0) {
-            throw std::runtime_error("USAGE: -crop width>0 height>0");
-        }
         image::Image new_image{width_, height_};
         for (size_t row = image.GetHeight() - height_; row < image.GetHeight(); ++row) {
             for (size_t col = 0; col < width_; ++col) {

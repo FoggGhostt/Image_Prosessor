@@ -76,33 +76,32 @@ public:
         }
     }
 
-    image::Image GreyScale(const image::Image& image) {
+    void GreyScale(image::Image& image) {
         const float red_figure = 0.299;
         const float green_figure = 0.587;
         const float blue_fugure = 0.114;
         image::Image new_image = image;
         for (size_t row = 0; row < image.GetHeight(); ++row) {
             for (size_t col = 0; col < image.GetWidth(); ++col) {
-                new_image(row, col).r =
+                image(row, col).r =
                     static_cast<float>(image(row, col).r * red_figure + image(row, col).g * green_figure +
                                        image(row, col).b * blue_fugure);
-                new_image(row, col).g =
+                image(row, col).g =
                     static_cast<float>(image(row, col).r * red_figure + image(row, col).g * green_figure +
                                        image(row, col).b * blue_fugure);
-                new_image(row, col).b =
+                image(row, col).b =
                     static_cast<float>(image(row, col).r * red_figure + image(row, col).g * green_figure +
                                        image(row, col).b * blue_fugure);
             }
         }
-        return new_image;
     }
 
     image::Image Apply(const image::Image& image) override {
         SetMatrix(FILTER_MATRIX1);
         image::Image new_image = image;
-        new_image = GreyScale(image);
-        MatrixApply(new_image);
-        // ChangePixel(new_image, threshold_);
+        GreyScale(new_image);
+        new_image = MatrixApply(new_image);
+        ChangePixel(new_image, threshold_);
         return new_image;
     }
 
